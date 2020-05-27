@@ -72,6 +72,10 @@ export const AddTask = styled.form`
     margin-right: 8px;
     padding: 2px;
     flex: 1;
+
+    &:focus {
+      border-bottom: 1px solid #71d1ca;
+    }
   }
 
   button {

@@ -56,7 +56,7 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
         <div>
           <span>{column.taskIds.length}</span> <AiOutlineUnorderedList />
         </div>
-        <AiOutlinePlusCircle onClick={() => setShowAddTask(true)} />
+        <AiOutlinePlusCircle onClick={() => setShowAddTask(!showAddTask)} />
       </Title>
       {showAddTask && (
         <AddTask>
