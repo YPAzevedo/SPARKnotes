@@ -1,7 +1,10 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { AiOutlineClose } from "react-icons/ai"
 
-import { Container, Text } from "./styles";
+import useColumnsContext from 'context/ColumnsProvider'
+
+import { Container } from "./styles";
 
 interface TaskProps {
   id: string | undefined;
@@ -10,6 +13,8 @@ interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = ({ id, text, index }) => {
+  const { removeTask } = useColumnsContext();
+
   return (
     <Draggable draggableId={id || "id"} index={index}>
       {(provided) => (
@@ -18,7 +23,8 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <Text>{text}</Text>
+          <p>{text}</p>
+          <AiOutlineClose onClick={() => removeTask(id)} />
         </Container>
       )}
     </Draggable>

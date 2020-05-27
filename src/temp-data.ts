@@ -25,7 +25,7 @@ export const initialData = {
     },
     {
       id: '@column:02',
-      title: 'in-Progress',
+      title: 'In-Progress',
       taskIds:['@task:02','@task:03']
     },
     {

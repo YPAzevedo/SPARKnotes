@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { uuid } from "uuidv4";
-import { initialData } from "../temp-data";
+import { COLUMNS } from "./columns";
 
 interface ColumnData {
   id: string;
@@ -19,6 +19,7 @@ interface ColumnsProviderData {
   tasks: TaskData[];
   onDragEnd(result: DropResult): void;
   addTask(columnId: string, task: string): void;
+  removeTask(taskId?: string): void
 }
 
 const ColumnsContext = createContext<ColumnsProviderData>(
@@ -26,8 +27,8 @@ const ColumnsContext = createContext<ColumnsProviderData>(
 );
 
 export const ColumnsProvider: React.FC = ({ children }) => {
-  const [columns, setColumns] = useState(initialData.columns);
-  const [tasks, setTasks] = useState(initialData.tasks);
+  const [columns, setColumns] = useState(COLUMNS as ColumnData[]);
+  const [tasks, setTasks] = useState([] as TaskData[]);
 
   const addTask = (columnId: string, task: string) => {
     const newTask = { id: uuid(), text: task };
@@ -35,14 +36,21 @@ export const ColumnsProvider: React.FC = ({ children }) => {
     setTasks(newTasks);
     const columnIndex = columns.findIndex((column) => column.id === columnId);
     const newColumn = columns[columnIndex];
-    newColumn.taskIds = [...newColumn.taskIds, newTask.id];
+    newColumn.taskIds = [...newColumn.taskIds, newTask.id] as string[];
     const newColumns = [...columns];
-    console.log(columnIndex);
-    console.log(">1", newColumns);
     newColumns.splice(columnIndex, 1);
-    console.log(">2", newColumns);
     newColumns.splice(columnIndex, 0, newColumn);
-    console.log(">3", newColumns);
+    setColumns(newColumns);
+  };
+
+  const removeTask = (taskId: string) => {
+    const columnIndex = columns.findIndex((column) => column.taskIds.find(task => task === taskId));
+    const newColumn = columns[columnIndex];
+    const taskIndex = newColumn.taskIds.findIndex((task) => task === taskId);
+    newColumn.taskIds.splice(taskIndex, 1);
+    const newColumns = [...columns];
+    newColumns.splice(columnIndex, 1);
+    newColumns.splice(columnIndex, 0, newColumn);
     setColumns(newColumns);
   };
 
@@ -102,7 +110,7 @@ export const ColumnsProvider: React.FC = ({ children }) => {
   };
 
   return (
-    <ColumnsContext.Provider value={{ columns, tasks, onDragEnd, addTask }}>
+    <ColumnsContext.Provider value={{ columns, tasks, onDragEnd, addTask, removeTask }}>
       {children}
     </ColumnsContext.Provider>
   );
