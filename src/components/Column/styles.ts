@@ -81,14 +81,16 @@ export const AddTask = styled.form`
   button {
     border: none;
     background: white;
-    border: 1px solid #222;
+    border: 2px solid #222;
     padding: 4px 8px;
     border-radius: 5px;
     margin: 0 8px;
+    font-weight: 500;
   }
 
   svg {
     cursor: pointer;
+    font-size: 20px;
 
     &:hover {
       opacity: 0.7;

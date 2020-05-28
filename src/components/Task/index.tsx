@@ -1,7 +1,7 @@
 import useColumnsContext from "context/ColumnsProvider";
 import React, { useState, useRef, useEffect, FormEvent } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { AiOutlineClose, AiOutlineEdit } from "react-icons/ai";
+import { TiTimes, TiEdit } from "react-icons/ti";
 
 import { Container } from "./styles";
 
@@ -49,8 +49,8 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
             <p>{text}</p>
           )}
           <div>
-            <AiOutlineEdit onClick={() => setShowEditTask(!showEditTask)} />
-            <AiOutlineClose onClick={() => removeTask(id)} />
+            <TiEdit onClick={() => setShowEditTask(!showEditTask)} />
+            <TiTimes onClick={() => removeTask(id)} />
           </div>
         </Container>
       )}

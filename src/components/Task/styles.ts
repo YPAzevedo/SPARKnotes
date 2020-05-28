@@ -14,22 +14,28 @@ export const Container = styled.div`
     display: flex;
   }
 
-  input {
-    border: none;
-    border-bottom: 1px solid lightgray;
-    margin-right: 8px;
-    padding: 2px;
+  form {
+    display: flex;
     flex: 1;
-    transition: border-bottom 0.3s;
 
-    &:focus {
-      border-bottom: 1px solid #222;
+    input {
+      border: none;
+      border-bottom: 1px solid lightgray;
+      margin-right: 8px;
+      padding: 2px;
+      flex: 1;
+      transition: border-bottom 0.3s;
+
+      &:focus {
+        border-bottom: 1px solid #222;
+      }
     }
   }
 
   svg {
-    margin: 5px;
+    margin: 0 5px;
     cursor: pointer;
+    font-size: 20px;
 
     &:hover {
       opacity: 0.7;

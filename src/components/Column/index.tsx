@@ -2,10 +2,10 @@ import useColumnsProvider from "context/ColumnsProvider";
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import {
-  AiOutlineClose,
-  AiOutlinePlusCircle,
-  AiOutlineUnorderedList,
-} from "react-icons/ai";
+  TiTimes,
+  TiPlus,
+  TiThList,
+} from "react-icons/ti";
 
 import Task from "../Task";
 import { AddTask, Container, TaskList, Title } from "./styles";
@@ -50,11 +50,11 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
   return (
     <Container type={column.title}>
       <Title>
-        {column.title}
+        <b>{column.title}</b>
         <div>
-          <span>{column.taskIds.length}</span> <AiOutlineUnorderedList />
+          <span>{column.taskIds.length}</span> <TiThList />
         </div>
-        <AiOutlinePlusCircle
+        <TiPlus
           id="add-task"
           onClick={() => setShowAddTask(!showAddTask)}
         />
@@ -69,7 +69,7 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
           <button type="submit" onClick={(e) => handleAddTask(e)}>
             Add
           </button>
-          <AiOutlineClose onClick={() => setShowAddTask(false)} />
+          <TiTimes id="remove-icon" onClick={() => setShowAddTask(false)} />
         </AddTask>
       )}
       <Droppable droppableId={column.id}>
