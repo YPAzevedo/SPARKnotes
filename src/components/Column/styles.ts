@@ -4,16 +4,29 @@ interface ConteinerProps {
   type: string;
 }
 
+// const getBackgroundColor = (type: string | undefined) => {
+//   switch (type?.toLowerCase()) {
+//     case "open":
+//       return "#e6fafa";
+//     case "in-progress":
+//       return "#fcfce8";
+//     case "done":
+//       return "#e8fcee";
+//     default:
+//       return "#faf2e6";
+//   }
+// };
+
 const getBackgroundColor = (type: string | undefined) => {
   switch (type?.toLowerCase()) {
     case "open":
-      return "#e6fafa";
+      return "#97d7f7";
     case "in-progress":
-      return "#fcfce8";
+      return "#faf18c";
     case "done":
-      return "#e8fcee";
+      return "#98fab2";
     default:
-      return "#faf2e6";
+      return "#fab1f4";
   }
 };
 
@@ -40,7 +53,7 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
     border-radius: 4px;
-    border: 1px solid #c3edea;
+    border: 1px solid lightgray;
     padding: 4px;
 
     span {
@@ -62,25 +75,26 @@ export const AddTask = styled.form`
   display: flex;
   align-items: center;
   background: white;
-  border-bottom: 1px solid #c3edea;
+  border-bottom: 1px solid lightgray;
   padding: 8px 16px;
 
   input {
     border: none;
-    border-bottom: 1px solid #c3edea;
+    border-bottom: 1px solid lightgray;
     margin-right: 8px;
     padding: 2px;
     flex: 1;
     transition: border-bottom 0.3s;
 
     &:focus {
-      border-bottom: 1px solid #71d1ca;
+      border-bottom: 1px solid #222;
     }
   }
 
   button {
     border: none;
-    background: #c3edea;
+    background: white;
+    border: 1px solid #222;
     padding: 4px 8px;
     border-radius: 5px;
     margin: 0 8px;

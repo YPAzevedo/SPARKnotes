@@ -10,16 +10,20 @@ export const Container = styled.div`
   padding: 10px;
   background: white;
 
+  div {
+    display: flex;
+  }
+
   input {
     border: none;
-    border-bottom: 1px solid #c3edea;
+    border-bottom: 1px solid lightgray;
     margin-right: 8px;
     padding: 2px;
     flex: 1;
     transition: border-bottom 0.3s;
 
     &:focus {
-      border-bottom: 1px solid #71d1ca;
+      border-bottom: 1px solid #222;
     }
   }
 
