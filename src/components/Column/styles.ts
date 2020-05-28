@@ -23,7 +23,8 @@ export const Container = styled.div<ConteinerProps>`
   width: 400px;
   height: 400px;
   border-radius: 8px;
-  margin: 0 16px;
+  margin: 16px;
+  width: 100%;
   overflow: auto;
   background: ${(props) => getBackgroundColor(props.type)};
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
