@@ -20,11 +20,11 @@ const getBackgroundColor = (type: string | undefined) => {
 export const Container = styled.div<ConteinerProps>`
   display: flex;
   flex-direction: column;
-  width: 400px;
   height: 400px;
+  width: 100%;
+  max-width: 400px;
   border-radius: 8px;
   margin: 16px;
-  width: 100%;
   overflow: auto;
   background: ${(props) => getBackgroundColor(props.type)};
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
