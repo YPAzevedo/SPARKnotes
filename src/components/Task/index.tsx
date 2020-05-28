@@ -12,7 +12,7 @@ interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = ({ id, text, index }) => {
-  const [inputValue, setinputValue] = useState("");
+  const [inputValue, setinputValue] = useState(text);
   const [showEditTask, setShowEditTask] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { removeTask, editTask } = useColumnsContext();
