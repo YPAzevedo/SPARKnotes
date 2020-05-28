@@ -1,9 +1,7 @@
+import Column from "components/Column";
+import useColumnsProvider from "context/ColumnsProvider";
 import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-
-import useColumnsProvider from "context/ColumnsProvider";
-
-import Column from "components/Column";
 
 import { Container } from "./styles";
 

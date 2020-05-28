@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -10,12 +10,25 @@ export const Container = styled.div`
   padding: 10px;
   background: white;
 
+  input {
+    border: none;
+    border-bottom: 1px solid #c3edea;
+    margin-right: 8px;
+    padding: 2px;
+    flex: 1;
+    transition: border-bottom 0.3s;
+
+    &:focus {
+      border-bottom: 1px solid #71d1ca;
+    }
+  }
+
   svg {
+    margin: 5px;
     cursor: pointer;
 
     &:hover {
-      opacity: 0.7
+      opacity: 0.7;
     }
   }
 `;
-

@@ -1,19 +1,19 @@
-import { uuid } from 'uuidv4'
+import { uuid } from "uuidv4";
 
 export const COLUMNS = [
   {
     id: uuid(),
     title: "Open",
-    taskIds:[]
+    taskIds: [],
   },
   {
     id: uuid(),
     title: "In-Progress",
-    taskIds:[]
+    taskIds: [],
   },
   {
     id: uuid(),
-    title:  "Done",
-    taskIds:[]
+    title: "Done",
+    taskIds: [],
   },
-]
+];

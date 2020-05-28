@@ -34,7 +34,6 @@ export const Title = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 8px;
-  border-bottom: 1px solid #c3edea;
   background: white;
 
   div {
@@ -49,7 +48,7 @@ export const Title = styled.div`
     }
   }
 
-  svg {
+  #add-task {
     cursor: pointer;
     font-size: 20px;
 
@@ -72,6 +71,7 @@ export const AddTask = styled.form`
     margin-right: 8px;
     padding: 2px;
     flex: 1;
+    transition: border-bottom 0.3s;
 
     &:focus {
       border-bottom: 1px solid #71d1ca;
@@ -82,16 +82,15 @@ export const AddTask = styled.form`
     border: none;
     background: #c3edea;
     padding: 4px 8px;
-    border: 1px solid #71d1ca;
     border-radius: 5px;
     margin: 0 8px;
   }
 
   svg {
     cursor: pointer;
-    
+
     &:hover {
-      opacity: 0.7,
+      opacity: 0.7;
     }
   }
 `;

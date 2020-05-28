@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
-import { DropResult } from "react-beautiful-dnd";
-import { uuid } from "uuidv4";
-import { COLUMNS } from "./columns";
+import React, { createContext, useContext, useState } from 'react';
+import { DropResult } from 'react-beautiful-dnd';
+import { uuid } from 'uuidv4';
+
+import { COLUMNS } from './columns';
 
 interface ColumnData {
   id: string;
@@ -19,7 +20,8 @@ interface ColumnsProviderData {
   tasks: TaskData[];
   onDragEnd(result: DropResult): void;
   addTask(columnId: string, task: string): void;
-  removeTask(taskId?: string): void
+  removeTask(taskId?: string): void;
+  editTask(taskId?: string, newText?: string): void;
 }
 
 const ColumnsContext = createContext<ColumnsProviderData>(
@@ -43,8 +45,18 @@ export const ColumnsProvider: React.FC = ({ children }) => {
     setColumns(newColumns);
   };
 
+  const editTask = (taskId: string, newText: string) => {
+    if (!newText) return;
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    const newTasks = [...tasks];
+    newTasks[taskIndex].text = newText;
+    setTasks(newTasks);
+  };
+
   const removeTask = (taskId: string) => {
-    const columnIndex = columns.findIndex((column) => column.taskIds.find(task => task === taskId));
+    const columnIndex = columns.findIndex((column) =>
+      column.taskIds.find((task) => task === taskId)
+    );
     const newColumn = columns[columnIndex];
     const taskIndex = newColumn.taskIds.findIndex((task) => task === taskId);
     newColumn.taskIds.splice(taskIndex, 1);
@@ -110,7 +122,9 @@ export const ColumnsProvider: React.FC = ({ children }) => {
   };
 
   return (
-    <ColumnsContext.Provider value={{ columns, tasks, onDragEnd, addTask, removeTask }}>
+    <ColumnsContext.Provider
+      value={{ columns, tasks, onDragEnd, addTask, editTask, removeTask }}
+    >
       {children}
     </ColumnsContext.Provider>
   );

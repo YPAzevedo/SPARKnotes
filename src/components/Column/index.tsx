@@ -1,16 +1,14 @@
-import React, { useState, useRef, useEffect, MouseEvent } from "react";
+import useColumnsProvider from "context/ColumnsProvider";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import {
-  AiOutlinePlusCircle,
   AiOutlineClose,
+  AiOutlinePlusCircle,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
 
 import Task from "../Task";
-
-import useColumnsProvider from "context/ColumnsProvider";
-
-import { Container, Title, TaskList, AddTask } from "./styles";
+import { AddTask, Container, TaskList, Title } from "./styles";
 
 interface ColumnProps {
   column: {
@@ -56,7 +54,10 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
         <div>
           <span>{column.taskIds.length}</span> <AiOutlineUnorderedList />
         </div>
-        <AiOutlinePlusCircle onClick={() => setShowAddTask(!showAddTask)} />
+        <AiOutlinePlusCircle
+          id="add-task"
+          onClick={() => setShowAddTask(!showAddTask)}
+        />
       </Title>
       {showAddTask && (
         <AddTask>
