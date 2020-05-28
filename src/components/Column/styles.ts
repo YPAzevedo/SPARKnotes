@@ -4,19 +4,6 @@ interface ConteinerProps {
   type: string;
 }
 
-// const getBackgroundColor = (type: string | undefined) => {
-//   switch (type?.toLowerCase()) {
-//     case "open":
-//       return "#e6fafa";
-//     case "in-progress":
-//       return "#fcfce8";
-//     case "done":
-//       return "#e8fcee";
-//     default:
-//       return "#faf2e6";
-//   }
-// };
-
 const getBackgroundColor = (type: string | undefined) => {
   switch (type?.toLowerCase()) {
     case "open":
