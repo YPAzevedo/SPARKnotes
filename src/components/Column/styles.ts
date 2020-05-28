@@ -40,7 +40,6 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
     border-radius: 4px;
-    border: 1px solid lightgray;
     padding: 4px;
 
     span {
