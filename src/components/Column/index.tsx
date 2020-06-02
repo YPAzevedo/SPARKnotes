@@ -1,5 +1,4 @@
-import useColumnsProvider from "context/ColumnsProvider";
-import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import React, { MouseEvent, useEffect, useRef, useState, memo } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import {
   TiTimes,
@@ -7,7 +6,9 @@ import {
   TiThList,
 } from "react-icons/ti";
 
-import Task from "../Task";
+import useGlobalState from "context/GlobalStateProvider";
+import Task from "components/Task";
+
 import { AddTask, Container, TaskList, Title } from "./styles";
 
 interface ColumnProps {
@@ -27,7 +28,7 @@ interface ColumnProps {
 }
 
 const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
-  const { addTask } = useColumnsProvider();
+  const { dispatch } = useGlobalState();
   const [inputValue, setInputValue] = useState("");
   const [showAddTask, setShowAddTask] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -42,7 +43,7 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
     e.preventDefault();
 
     if (!!inputValue) {
-      addTask(column.id, inputValue);
+      dispatch({type: "ADD", columnId: column.id, taskText: inputValue});
     }
     setInputValue("");
   };
@@ -90,4 +91,4 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
   );
 };
 
-export default Column;
+export default memo(Column);

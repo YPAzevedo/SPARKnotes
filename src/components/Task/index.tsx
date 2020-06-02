@@ -1,7 +1,8 @@
-import useColumnsContext from "context/ColumnsProvider";
 import React, { useState, useRef, useEffect, FormEvent } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { TiTimes, TiEdit } from "react-icons/ti";
+
+import useGlobalState from "context/GlobalStateProvider";
 
 import { Container } from "./styles";
 
@@ -15,7 +16,7 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
   const [inputValue, setinputValue] = useState(text);
   const [showEditTask, setShowEditTask] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { removeTask, editTask } = useColumnsContext();
+  const { dispatch } = useGlobalState();
 
   useEffect(() => {
     if (showEditTask) {
@@ -25,7 +26,7 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
 
   const handleEditTask = (e: FormEvent) => {
     e.preventDefault();
-    editTask(id, inputValue);
+    dispatch({ type: "EDIT", taskId: id, newText: inputValue });
     setShowEditTask(false);
   };
 
@@ -50,7 +51,7 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
           )}
           <div>
             <TiEdit onClick={() => setShowEditTask(!showEditTask)} />
-            <TiTimes onClick={() => removeTask(id)} />
+            <TiTimes onClick={() => dispatch({ type: "REMOVE", taskId: id })} />
           </div>
         </Container>
       )}

@@ -1,17 +1,17 @@
 import React from "react";
 import ColumnsContainer from "components/ColumnsContainer";
 import Header from "components/Header";
-import { ColumnsProvider } from "context/ColumnsProvider";
+import { GlobalStateProvider } from "context/GlobalStateProvider";
 import GlobalStyle from "styles/global";
 
 function App() {
   return (
     <>
-      <ColumnsProvider>
+      <GlobalStateProvider>
         <GlobalStyle />
         <Header />
         <ColumnsContainer />
-      </ColumnsProvider>
+      </GlobalStateProvider>
     </>
   );
 }
