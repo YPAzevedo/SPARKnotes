@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
-import { uuid } from 'uuidv4';
+import React, { createContext, useContext, useState } from "react";
+import { DropResult } from "react-beautiful-dnd";
+import { uuid } from "uuidv4";
 
-import { COLUMNS } from './columns';
+import { COLUMNS } from "./columns";
 
 interface ColumnData {
   id: string;
@@ -32,43 +32,38 @@ export const ColumnsProvider: React.FC = ({ children }) => {
   const [columns, setColumns] = useState(COLUMNS as ColumnData[]);
   const [tasks, setTasks] = useState([] as TaskData[]);
 
-  const addTask = (columnId: string, task: string) => {
-    const newTask = { id: uuid(), text: task };
+  const addTask = (columnId: string, taskText: string) => {
+    const newTask = { id: uuid(), text: taskText };
     const newTasks = [...tasks, newTask];
     setTasks(newTasks);
-    const columnIndex = columns.findIndex((column) => column.id === columnId);
-    const newColumn = columns[columnIndex];
-    newColumn.taskIds = [...newColumn.taskIds, newTask.id] as string[];
-    const newColumns = [...columns];
-    newColumns.splice(columnIndex, 1);
-    newColumns.splice(columnIndex, 0, newColumn);
+    const newColumns = columns.map((column) => ({
+      ...column,
+      taskIds: column.id === columnId ? [...column.taskIds, newTask.id] : column.taskIds,
+    }));
     setColumns(newColumns);
   };
 
   const editTask = (taskId: string, newText: string) => {
     if (!newText) return;
-    const taskIndex = tasks.findIndex((task) => task.id === taskId);
-    const newTasks = [...tasks];
-    newTasks[taskIndex].text = newText;
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, text: newText };
+      }
+      return task;
+    });
     setTasks(newTasks);
   };
 
   const removeTask = (taskId: string) => {
-    const columnIndex = columns.findIndex((column) =>
-      column.taskIds.find((task) => task === taskId)
-    );
-    const newColumn = columns[columnIndex];
-    const taskIndex = newColumn.taskIds.findIndex((task) => task === taskId);
-    newColumn.taskIds.splice(taskIndex, 1);
-    const newColumns = [...columns];
-    newColumns.splice(columnIndex, 1);
-    newColumns.splice(columnIndex, 0, newColumn);
+    const newColumns = columns.map((column) => ({
+      ...column,
+      taskIds: column.taskIds.filter((task) => task !== taskId),
+    }));
     setColumns(newColumns);
   };
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result;
-    console.log(result);
     // if the draggable is dropped outside a droppable area
     if (!destination) {
       return;
@@ -107,7 +102,6 @@ export const ColumnsProvider: React.FC = ({ children }) => {
 
       const sourceColumn = columns[sourceColumnIndex];
       const destinationColumn = columns[destinationColumnIndex];
-      console.log(sourceColumn, destinationColumn);
 
       const sourceColumnTaskIds = [...sourceColumn.taskIds];
       const destinationColumnTaskIds = [...destinationColumn.taskIds];
