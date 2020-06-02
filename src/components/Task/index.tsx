@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, FormEvent } from "react";
+import React, { useState, useRef, useEffect, FormEvent, memo } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { TiTimes, TiEdit } from "react-icons/ti";
 
@@ -59,4 +59,4 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
   );
 };
 
-export default Task;
+export default memo(Task);

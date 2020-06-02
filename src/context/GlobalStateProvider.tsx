@@ -52,11 +52,6 @@ export default function useGlobalState() {
   const state = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
 
-  console.log({
-    state,
-    dispatch,
-  });
-
   return {
     state,
     dispatch,

@@ -15,7 +15,6 @@ export const stateReducer = (
   state: { columns: ColumnData[]; tasks: TaskData[] },
   action: any
 ): any => {
-  console.log("action", action);
   switch (action.type) {
     case "ADD": {
       const newTask = { id: uuid(), text: action.taskText };
