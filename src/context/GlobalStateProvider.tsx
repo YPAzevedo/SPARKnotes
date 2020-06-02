@@ -5,7 +5,7 @@ import React, {
   useCallback,
 } from "react";
 
-import { stateReducer } from './reducer'
+import { stateReducer } from "./reducer";
 
 import { COLUMNS } from "./columns";
 
@@ -21,20 +21,18 @@ interface TaskData {
 }
 
 interface GlobalStateProviderData {
-  state: {
-    columns: ColumnData[];
-    tasks: TaskData[] | never[];
-  };
-  dispatch: Function;
+  columns: ColumnData[];
+  tasks: TaskData[] | never[];
 }
 
 const GlobalStateContext = createContext<GlobalStateProviderData>(
   {} as GlobalStateProviderData
 );
 
-export const GlobalStateProvider: React.FC = ({ children }) => {
+const GlobalDispatchContext = createContext<any>(null);
 
-  const reducer = useCallback(stateReducer, [])
+export const GlobalStateProvider: React.FC = ({ children }) => {
+  const reducer = useCallback(stateReducer, []);
 
   const [state, dispatch] = useReducer(reducer, {
     columns: COLUMNS,
@@ -42,14 +40,25 @@ export const GlobalStateProvider: React.FC = ({ children }) => {
   });
 
   return (
-    <GlobalStateContext.Provider value={{ state, dispatch }}>
-      {children}
+    <GlobalStateContext.Provider value={state}>
+      <GlobalDispatchContext.Provider value={dispatch}>
+        {children}
+      </GlobalDispatchContext.Provider>
     </GlobalStateContext.Provider>
   );
 };
 
 export default function useGlobalState() {
-  const context = useContext(GlobalStateContext);
+  const state = useContext(GlobalStateContext);
+  const dispatch = useContext(GlobalDispatchContext);
 
-  return context;
+  console.log({
+    state,
+    dispatch,
+  });
+
+  return {
+    state,
+    dispatch,
+  };
 }

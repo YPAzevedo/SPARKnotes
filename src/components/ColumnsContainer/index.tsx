@@ -12,9 +12,9 @@ const ColumnsContainer: React.FC = () => {
   return (
     <DragDropContext onDragEnd={(result) => dispatch({type: "DRAG-END", result})}>
       <Container>
-        {state.columns.map((column) => {
-          const taskList = column.taskIds.map((task) => {
-            const taskIndex = state.tasks.findIndex((t) => t.id === task);
+        {state.columns.map((column: any) => {
+          const taskList = column.taskIds.map((task: any) => {
+            const taskIndex = state.tasks.findIndex((t: any) => t.id === task);
             if (taskIndex > -1) {
               return state.tasks[taskIndex];
             }
