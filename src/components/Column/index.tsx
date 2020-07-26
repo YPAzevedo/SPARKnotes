@@ -1,10 +1,6 @@
 import React, { MouseEvent, useEffect, useRef, useState, memo } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import {
-  TiTimes,
-  TiPlus,
-  TiThList,
-} from "react-icons/ti";
+import { GrClose, GrAdd, GrUnorderedList } from "react-icons/gr";
 
 import useGlobalState from "context/GlobalStateProvider";
 import Task from "components/Task";
@@ -43,7 +39,7 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
     e.preventDefault();
 
     if (!!inputValue) {
-      dispatch({type: "ADD", columnId: column.id, taskText: inputValue});
+      dispatch({ type: "ADD", columnId: column.id, taskText: inputValue });
     }
     setInputValue("");
   };
@@ -53,12 +49,11 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
       <Title>
         <b>{column.title}</b>
         <div>
-          <span>{column.taskIds.length}</span> <TiThList />
+          <span>{column.taskIds.length}</span> <GrUnorderedList />
         </div>
-        <TiPlus
-          id="add-task"
-          onClick={() => setShowAddTask(!showAddTask)}
-        />
+        <button onClick={() => setShowAddTask(!showAddTask)}>
+          <GrAdd id="add-task" />
+        </button>
       </Title>
       {showAddTask && (
         <AddTask>
@@ -70,7 +65,9 @@ const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
           <button type="submit" onClick={(e) => handleAddTask(e)}>
             Add
           </button>
-          <TiTimes id="remove-icon" onClick={() => setShowAddTask(false)} />
+          <button onClick={() => setShowAddTask(false)}>
+            <GrClose id="remove-icon" />
+          </button>
         </AddTask>
       )}
       <Droppable droppableId={column.id}>

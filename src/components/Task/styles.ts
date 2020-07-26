@@ -32,13 +32,17 @@ export const Container = styled.div`
     }
   }
 
-  svg {
+  button {
+    background: transparent;
+    border: none;
     margin: 0 5px;
-    cursor: pointer;
-    font-size: 20px;
 
-    &:hover {
-      opacity: 0.7;
+    svg {
+      font-size: 18px;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 `;

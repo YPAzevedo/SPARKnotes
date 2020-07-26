@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, FormEvent, memo } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { TiTimes, TiEdit } from "react-icons/ti";
+import { GrClose, GrEdit } from "react-icons/gr";
 
 import useGlobalState from "context/GlobalStateProvider";
 
@@ -50,8 +50,12 @@ const Task: React.FC<TaskProps> = ({ id, text, index }) => {
             <p>{text}</p>
           )}
           <div>
-            <TiEdit onClick={() => setShowEditTask(!showEditTask)} />
-            <TiTimes onClick={() => dispatch({ type: "REMOVE", taskId: id })} />
+            <button onClick={() => setShowEditTask(!showEditTask)}>
+              <GrEdit />
+            </button>
+            <button onClick={() => dispatch({ type: "REMOVE", taskId: id })}>
+              <GrClose />
+            </button>
           </div>
         </Container>
       )}

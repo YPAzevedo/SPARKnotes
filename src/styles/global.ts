@@ -7,9 +7,13 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
   }
+  html, body, #root {
+    height: 100vh;
+    width: 100%;
+  }
   body {
     --webkit-font-smoothing: antialiased;
-    background: '##fafafa'
+    background: '#eeeeee'
   }
   body, input, button {
     font-size: 16px;

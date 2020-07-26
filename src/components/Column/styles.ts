@@ -20,9 +20,11 @@ const getBackgroundColor = (type: string | undefined) => {
 export const Container = styled.div<ConteinerProps>`
   display: flex;
   flex-direction: column;
-  height: 400px;
-  width: 100%;
-  max-width: 400px;
+  height: 80%;
+  max-height: 800px;
+  flex: 1;
+  min-width: 350px;
+  max-width: 700px;
   border-radius: 8px;
   margin: 16px;
   overflow: auto;
@@ -48,12 +50,16 @@ export const Title = styled.div`
     }
   }
 
-  #add-task {
-    cursor: pointer;
-    font-size: 20px;
-
+  button {
+    background: transparent;
+    border: none;
     &:hover {
       opacity: 0.7;
+    }
+
+    #add-task {
+      cursor: pointer;
+      font-size: 20px;
     }
   }
 `;
@@ -78,22 +84,29 @@ export const AddTask = styled.form`
     }
   }
 
-  button {
+  button::nth-child(1) {
+    background: transparent;
     border: none;
-    background: white;
-    border: 2px solid #222;
     padding: 4px 8px;
     border-radius: 5px;
     margin: 0 8px;
     font-weight: 500;
-  }
-
-  svg {
-    cursor: pointer;
-    font-size: 20px;
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    margin: 0 8px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+    svg {
+      font-size: 16px;
     }
   }
 `;
