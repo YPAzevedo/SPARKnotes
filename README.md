@@ -1,6 +1,6 @@
 ## ⚡️📚 SPARKnotes
 
-![SPARKnotes](demo/sparknotes.gif)
+![SPARKnotes](demo/SPARKnotes.gif)
 
 ## Techs 💻
 - React
